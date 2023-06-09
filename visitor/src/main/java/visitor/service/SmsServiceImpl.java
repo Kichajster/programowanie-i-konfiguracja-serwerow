@@ -17,18 +17,20 @@ public class SmsServiceImpl implements SmsService {
                 smsRequest.getMessage(),
                 new Date()
         );
-
+        smsResult(smsModel);
+        System.out.println(toJson(smsModel));
+    }
+    public void smsResult(SmsModel smsModel) {
         System.out.println(String.format("Sms został wysłany: \n" +
                 "\tNumer odbiorcy: %s,\n" +
                 "\tNumer wysyłającego: %s,\n" +
                 "\tTreść smsa: %s,\n" +
-                "\tData wysłania sms: %s\n\n", smsModel.getRecipient(), smsModel.getSender(), smsModel.getMessage(), smsModel.getSendDate())
+                "\tData wysłania sms: %s\n", smsModel.getRecipient(), smsModel.getSender(), smsModel.getMessage(), smsModel.getSendDate())
         );
-
+    }
+    public String toJson(SmsModel smsModel){
         Gson gson = new Gson();
         String json = gson.toJson(smsModel);
-        System.out.println(String.format("Sms zbudowany do JsonB: %s, \n\t", json));
-
-
+        return String.format("Sms zbudowany do JsonB: %s, \t", json);
     }
 }
